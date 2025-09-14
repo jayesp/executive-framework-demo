@@ -1,4 +1,4 @@
-package com.jay.projects.executive_framework_demo;
+package com.jay.projects.executors;
 
 /**
  * Hello world!
