@@ -1,4 +1,4 @@
-package com.jay.projects.executors;
+package com.jay.demos.executors;
 
 public class LongTask {
     public static void simulate() {

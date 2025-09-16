@@ -1,4 +1,4 @@
-package com.jay.projects.executors;
+package com.jay.demos.executors;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
