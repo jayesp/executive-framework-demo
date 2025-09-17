@@ -3,9 +3,10 @@ package com.jay.demos.concurrency;
 public class DownloadFileTask implements Runnable {
     private DownloadStatus status;
 
-    public DownloadFileTask(DownloadStatus status) {
+
+    public DownloadFileTask() {
         // TODO Auto-generated constructor stub
-        this.status = status;
+        this.status = new DownloadStatus();
     }
 
     @Override
@@ -20,4 +21,7 @@ public class DownloadFileTask implements Runnable {
         System.out.println("Download complete: " + Thread.currentThread().getName());
     }
 
+    public DownloadStatus getStatus() {
+        return status;
+    }
 }
