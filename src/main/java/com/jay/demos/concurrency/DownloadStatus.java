@@ -1,17 +1,24 @@
 package com.jay.demos.concurrency;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class DownloadStatus {
-    private int totalBytes;
+    private AtomicInteger totalBytes = new AtomicInteger();
+    private AtomicInteger totalFiles = new AtomicInteger();
 
     public int getTotalBytes() {
-        return totalBytes;
+        return totalBytes.get();
     }
 
-    public void setTotalBytes(int totalBytes) {
-        this.totalBytes = totalBytes;
+    public int getTotalFiles() {
+        return totalFiles.get();
     }
-    
+
     public void incrementTotalBytes() {
-        totalBytes++;
+        totalBytes.incrementAndGet();
+    }
+
+    public void incrementTotalFiles() {
+        totalFiles.incrementAndGet();
     }
 }
