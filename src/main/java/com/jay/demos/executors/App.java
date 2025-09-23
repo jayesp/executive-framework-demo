@@ -6,9 +6,15 @@ package com.jay.demos.executors;
  */
 public class App {
     public static void main(String[] args) {
-        System.out.println("start");
         var service = new MailService();
-        service.send();
+        service.sendAsync();
         System.out.println("Hello World");
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
