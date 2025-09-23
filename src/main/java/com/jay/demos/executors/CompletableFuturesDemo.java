@@ -1,22 +1,24 @@
 package com.jay.demos.executors;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class CompletableFuturesDemo {
     public static void show() {
-        var future = CompletableFuture.supplyAsync(() -> 1);
-        future.thenRunAsync(() -> {
-            System.out.println(Thread.currentThread().getName());
-            System.out.println("Done");
+        var future = CompletableFuture.supplyAsync(() -> {
+            System.out.println("Getting the current weather");
+            throw new IllegalStateException();
         });
 
         try {
-            Thread.sleep(200);
+            var temperature = future.exceptionally(ex -> 1).get();
+            System.out.println(temperature);
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
         }
-        System.out.println("here");
-
+        System.out.println("show() ended");
     }
 }
