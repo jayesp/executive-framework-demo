@@ -15,7 +15,7 @@ public class CompletableFuturesDemo {
 
         try {
             var result = future
-                    .orTimeout(1, TimeUnit.SECONDS)
+                    .completeOnTimeout(1, 1, TimeUnit.SECONDS)
                     .get();
             System.out.println(result);
         } catch (InterruptedException e) {
