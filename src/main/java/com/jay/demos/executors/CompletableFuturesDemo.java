@@ -1,27 +1,21 @@
 package com.jay.demos.executors;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
-
 public class CompletableFuturesDemo {
 
     public static void show() {
-        var future = CompletableFuture.supplyAsync(() -> {
-            LongTask.simulate();
-            System.out.println("");
-            return 1;
-        });
+        var service = new FlightService();
+        service.getQuote("site1")
+            .thenAccept(System.out::println);
+
+        service.getQuote("site2")
+            .thenAccept(System.out::println);
+
+        service.getQuote("site3")
+            .thenAccept(System.out::println);
 
         try {
-            var result = future
-                    .completeOnTimeout(1, 1, TimeUnit.SECONDS)
-                    .get();
-            System.out.println(result);
+            Thread.sleep(10_000);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ExecutionException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
