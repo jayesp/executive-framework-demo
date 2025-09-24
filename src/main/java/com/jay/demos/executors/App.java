@@ -6,6 +6,6 @@ package com.jay.demos.executors;
  */
 public class App {
     public static void main(String[] args) {
-       CompletableFuturesDemo.show();
+        CompletableFuturesDemo.show();
     }
 }

@@ -1,20 +1,30 @@
 package com.jay.demos.executors;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 public class CompletableFuturesDemo {
 
     public static void show() {
-        var first = CompletableFuture.supplyAsync(() -> {
+        var future = CompletableFuture.supplyAsync(() -> {
             LongTask.simulate();
-            return 20;
+            System.out.println("");
+            return 1;
         });
 
-        var second = CompletableFuture.supplyAsync(() -> 20);
-
-        var fastest = CompletableFuture
-            .anyOf(first, second)
-            .thenAccept(temp -> System.out.println(temp));
+        try {
+            var result = future
+                    .orTimeout(1, TimeUnit.SECONDS)
+                    .get();
+            System.out.println(result);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         System.out.println("show() ended");
     }
